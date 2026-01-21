@@ -30,6 +30,17 @@ These insights empower stakeholders with key business metrics, enabling strategi
 
 --- 
 
+---
+## 🛠️ Tools & Technologies
+
+![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoftsqlserver&logoColor=white)
+![SSMS](https://img.shields.io/badge/SSMS-0078D4?logo=microsoft&logoColor=white)
+
+- **Database Engine:** [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-downloads)
+- **Database Management:** [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+- **System Design & Architecture:** [Draw.io](https://www.drawio.com/)
+- **Project Management & Documentation:** [Notion](https://www.notion.so/)
+
 ## 👤 About Me
 
 ---
