@@ -7,10 +7,10 @@ This repository showcases a modern Data Engineering solution built on **SQL Serv
 ---
 ## 🚀 Project Overview
 This project involves:
- - **1. Data Architecture:** Designing a Modern Data Warehouse using the Medallion Architecture **Bronze**, **Silver**, and **Gold** layers.
- - **2. ETL Pipelines:** Extracting, Transforming, and Loading data from source systtems into the warehouse.
- - **3. Data Modeling:** Developing fact and dimension tables optimised for analytical queries.
- - **4. Analytics & Reporting:** Creating SQL-based reports and dashboards for actionable insights.
+1. **Data Architecture:** Designing a Modern Data Warehouse using the Medallion Architecture **Bronze**, **Silver**, and **Gold** layers.
+2. **ETL Pipelines:** Extracting, Transforming, and Loading data from source systtems into the warehouse.
+3. **Data Modeling:** Developing fact and dimension tables optimised for analytical queries.
+4. **Analytics & Reporting:** Creating SQL-based reports and dashboards for actionable insights.
 
 This repository is an excellent resource for professionals, students, or anyone looking  to showcase expertise in:
 - Data Engineering
@@ -28,9 +28,9 @@ The data architecture for the system follows the Medallion Architecture **Bronze
 <img width="1411" height="822" alt="data_architecture drawio" src="https://github.com/user-attachments/assets/eb96a959-8cc4-486a-86ee-c21bb2fb8db7" />
 
 
-- **1. Bronze Layer:** Stores raw data as it is from the source systems. Data is ingested from CSV Files into SQL Server Database.
-- **2. Silver Layer:** This layer includes data cleansing, standardisation, and normalisation processes to prepare data for analysys.
-- **3. Gold Layer:** Houses business-ready data modeled into a star schema required for reporting and analytics. 
+1. **Bronze Layer:** Stores raw data as it is from the source systems. Data is ingested from CSV Files into SQL Server Database.
+2. **Silver Layer:** This layer includes data cleansing, standardisation, and normalisation processes to prepare data for analysys.
+3. **Gold Layer:** Houses business-ready data modeled into a star schema required for reporting and analytics. 
 
 ---
 ## 🎯 Project Objectives
@@ -70,7 +70,50 @@ These insights empower stakeholders with key business metrics, enabling strategi
 modern-sql-warehouse/
 │
 ├── datasets/
+|   ├── source_crm/
+|   |   ├── cust_info.csv
+|   |   ├── prd_info.csv
+|   |   └── sales_details.csv
+|   └── source_erp/
+|        ├── CUST_AZ12.csv
+|        ├── LOC_A101.csv
+|        └── PX_CAT_G1V2.csv
+|
+├── documents/
+|   ├── data_architecture.png
+|   ├── data_catalog.md
+|   ├── data_flow.png
+|   ├── data_integration.png
+|   ├── data_model.png
+|   └── naming_conventions.md
+|
+├── scripts/
+|   ├── bronze/
+|   |   ├── ddl_bronze.sql
+|   |   └── usp_load_bronze.sql
+|   ├── gold/
+|   |   ├── ddl_gold.sql
+|   ├── silver/
+|   |   ├── ddl_silver.sql
+|   |   └── usp_load_silver.sql
+|   └── init_database.sql
+|
+├── tests/
+|   ├── quality_checks_gold.sql
+|   └── quality_checks_silver.sql
+|
+├── LICENSE
+|
+└── README.md
 ```
+---
+## ⚙️ Execution Flow
+To build the warehouse from scratch, execute the scripts in the following order:
+1. `init_database.sql` — Sets up the database and schemas.
+2. `scripts/bronze/` — Loads raw CSV data into staging tables.
+3. `scripts/silver/` — Cleans data and applies business logic.
+4. `scripts/gold/` — Populates the final Star Schema for reporting.
+5. `tests/` — Run quality checks to ensure data integrity.
 
 ---
 ## 👤 About Me
