@@ -3,8 +3,6 @@
 This repository showcases a modern Data Engineering solution built on **SQL Server**, designed to transform raw transactional data into actionable business intelligence. By leveraging the **Medallion Architecture**, the project ensures high data quality and a structured flow from ingestion to final reporting. 
 
 ---
-
----
 ## 🚀 Project Overview
 This project involves:
 1. **Data Architecture:** Designing a Modern Data Warehouse using the Medallion Architecture **Bronze**, **Silver**, and **Gold** layers.
