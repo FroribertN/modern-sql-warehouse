@@ -20,7 +20,7 @@ This repository is an excellent resource for professionals, students, or anyone 
 
 ---
 
-## 🏗️ Data Architecture & Workflow 
+## 🏗️ Project Architecture 
 The project follows the Medallion Architecture **Bronze**, **Silver**, and **Gold** layers:
 
 <img width="1411" height="822" alt="data_architecture drawio" src="https://github.com/user-attachments/assets/eb96a959-8cc4-486a-86ee-c21bb2fb8db7" />
@@ -57,52 +57,54 @@ These insights empower stakeholders with key business metrics, enabling strategi
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoftsqlserver&logoColor=white)
 ![SSMS](https://img.shields.io/badge/SSMS-0078D4?logo=microsoft&logoColor=white)
 
-- **Database Engine:** [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-downloads)
-- **Database Management:** [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
-- **System Design & Architecture:** [Draw.io](https://www.drawio.com/)
-- **Project Management & Documentation:** [Notion](https://www.notion.so/)
+- **Database Engine:** [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-downloads) — Served as the core RDBMS for data storage and processing through the Bronze, Silver, and Gold layers.
+- **Development Enviroment:** [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) — The primary IDE used for authoring T-SQL scripts, managing database objects, and executing ETL procedures.
+- **Data Modeling & Architecture:** [Draw.io](https://www.drawio.com/)  — Used to design the Medallion Architecture data flow and the Star Schema Entity Relationship Diagram (ERD).
+- **Project Governance:** [Notion](https://www.notion.so/) — Used for end-to-end project management, documentation, and task tracking across all development stages.
+- **Version Control:** [Git & GitHub](https://github.com/FroribertN/modern-sql-warehouse/commits/main) — Employed for codebase management, collaborative development, and maintaining a transparent version history of the ETL pipeline.
+- **Detailed Roadmap:** You can access the full task breakdown and project implementation stages via my [Notion Project Procedure](https://www.notion.so/SQL-Data-Warehouse-Project-2eec6e1c547880bbbbcfd02f0ce2f766?source=copy_link).
 
 ---
 ## 📂 Repository Structure
 ```text
 modern-sql-warehouse/
 │
-├── datasets/
-|   ├── source_crm/
+├── datasets/                           # RAW SOURCE DATA
+|   ├── source_crm/                     # Customer Relationship Management extracts (Primary Sales and Customer source)
 |   |   ├── cust_info.csv
 |   |   ├── prd_info.csv
 |   |   └── sales_details.csv
-|   └── source_erp/
+|   └── source_erp/                     # Enterprise Resource Planning extracts (Supplementary Location/Category source)
 |        ├── CUST_AZ12.csv
 |        ├── LOC_A101.csv
 |        └── PX_CAT_G1V2.csv
 |
-├── documents/
-|   ├── data_architecture.png
-|   ├── data_catalog.md
-|   ├── data_flow.png
-|   ├── data_integration.png
-|   ├── data_model.png
-|   └── naming_conventions.md
+├── documents/                          # PROJECT GOVERNANCE AND DESIGN 
+|   ├── data_architecture.png           # Visual Overview of the Medallion Pipeline (Bronze → Silver → Gold)
+|   ├── data_catalog.md                 # Metadata dictionary defining columns, types, and business descriptions 
+|   ├── data_flow.png                   # Lineage diagram showing data movement from Source to Consumption
+|   ├── data_integration.png            # Documentation/Diagram on how CRM and ERP keys were mapped/linked
+|   ├── data_model.png                  # Entity Relationship Diagram (ERD) of the final Star Schema
+|   └── naming_conventions.md           # Rules for SQL aliases, casing, and object naming (e.g., 'dim_', 'fact_')
 |
-├── scripts/
-|   ├── bronze/
-|   |   ├── ddl_bronze.sql
-|   |   └── usp_load_bronze.sql
-|   ├── gold/
-|   |   ├── ddl_gold.sql
-|   ├── silver/
-|   |   ├── ddl_silver.sql
-|   |   └── usp_load_silver.sql
-|   └── init_database.sql
+├── scripts/                            # ETL LOGIC & PIPELINE STAGES
+|   ├── bronze/                         # RAW LANDING: Ingests CSVs into SQL tables without changes
+|   |   ├── ddl_bronze.sql              # Schema definitions for raw landing tables
+|   |   └── usp_load_bronze.sql         # Stored Procedure for automated batch loading
+|   ├── gold/                           # ANALYTICAL LAYER: Business-ready views and Star Schema modeling
+|   |   ├── ddl_gold.sql                # Logic for creating Dim and Fact views with Surrogate Keys
+|   ├── silver/                         # CLEANSED LAYER: Cleansing, deduplication, and standardisation logic
+|   |   ├── ddl_silver.sql              # Schema definitions for cleaned tables
+|   |   └── usp_load_silver.sql         # Stored Procedure: Logic for casting types, handling NULLs, and trimming strings
+|   └── init_database.sql               # Environment setup script (creates database and schemas)
 |
-├── tests/
-|   ├── quality_checks_gold.sql
-|   └── quality_checks_silver.sql
+├── tests/                              # DATA QUALITY & INTEGRITY SUITE
+|   ├── quality_checks_gold.sql         # Validates Star Schema (Unique Keys & Referential Integrity)
+|   └── quality_checks_silver.sql       # Validates transformation logic (Data Profiling & Standardisation)
 |
-├── LICENSE
+├── LICENSE                             # Open-source usage rights (MIT)
 |
-└── README.md
+└── README.md                           # Primary project documentation and setup guide
 ```
 ---
 ## ⚙️ Execution Flow
